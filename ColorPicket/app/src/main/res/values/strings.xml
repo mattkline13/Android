@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Color Picker</string>
+    <string name="default_slider">0</string>
 </resources>
