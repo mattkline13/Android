@@ -1,18 +1,18 @@
-package com.ebookfrenzy.fragmentexample
+package com.ebookfrency.fragmentexample
 
-import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class FragmentExampleActivity : FragmentActivity(), ToolbarFragment.ToolbarListener {
+class FragmentExampleActivity : AppCompatActivity(), ToolbarFragment.ToolbarListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fragment_example)
     }
 
-    override fun onButtonClick(fonrsize: Int, text: String) {
-        val textFragment = supportFragmentManager.findFragmentById(R.id.text_fragment) as TextFragment
+    override fun onButtonClick(fontsize: Int, text: String) {
 
-        textFragment.changeTextProperties(fonrsize, text)
+        val textFragment = supportFragmentManager.findFragmentById(R.id.text_fragment) as TextFragment
+        textFragment.changeTextProperties(fontsize,text)
     }
 }
