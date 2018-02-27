@@ -5,12 +5,14 @@
     <item
         android:id="@+id/action_save"
         android:orderInCategory="100"
+        android:icon="@drawable/save"
         android:title="@string/action_save"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_recall"
         android:orderInCategory="100"
+        android:icon="@drawable/load"
         android:title="@string/action_recall"
         app:showAsAction="ifRoom" />
 </menu>
