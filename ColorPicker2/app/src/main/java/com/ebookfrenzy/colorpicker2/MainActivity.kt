@@ -132,7 +132,8 @@ class MainActivity : AppCompatActivity() {
                     setNegativeButton("NO") { dialog, whichButton -> dialog.dismiss() }
                 }
 
-                builder.create().show()
+                builder.create()
+                builder.show()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
