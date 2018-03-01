@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Drawing1</string>
+    <string name="raw_anim">Raw</string>
+    <string name="obj_anim">Smooth Move</string>
+    <string name="acc_anim">Accelerate out</string>
+    <string name="decel_anim">Decelerate in</string>
+    <string name="bounce_anim">Bounce</string>
+    <string name="rotate_anim">Rotate</string>
+    <string name="moverotate_anim">Move and Rotate</string>
+    <string name="color_anim">Animate Color Change</string>
+    <string name="movecolor_anim">Move and Recolor</string>
+    <string name="moverotatecolor_anim">Move and Rotate, Then Color</string>
+    <string name="rotate_bounce_color">Rotate and Bounce and Color</string>
+    <string name="rotate_while_accelerating">Rotate while Accelerate</string>
+</resources>

@@ -1,0 +1,80 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="android.matt.animation.MainActivity">
+
+    <item
+        android:id="@+id/raw_animation"
+        android:orderInCategory="50"
+        android:title="@string/raw_anim"
+        app:showAsAction="never"/>
+
+    <item
+
+        android:id="@+id/obj_animation"
+        android:orderInCategory="51"
+        android:title="@string/obj_anim"
+        app:showAsAction="never"/>
+
+    <item
+
+        android:id="@+id/accelorate_animation"
+        android:orderInCategory="52"
+        android:title="@string/acc_anim"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/decelorate_animation"
+        android:orderInCategory="52"
+        android:title="@string/decel_anim"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/bounce_animation"
+        android:orderInCategory="53"
+        android:title="@string/bounce_anim"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/rotate_animation"
+        android:orderInCategory="54"
+        android:title="@string/rotate_anim"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/moverotate_animation"
+        android:orderInCategory="55"
+        android:title="@string/moverotate_anim"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/color_animation"
+        android:orderInCategory="60"
+        android:title="@string/color_anim"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/movecolor_animation"
+        android:orderInCategory="61"
+        android:title="@string/movecolor_anim"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/moverotatecolor_animation"
+        android:orderInCategory="62"
+        android:title="@string/moverotatecolor_anim"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/rotate_bounce_color"
+        android:orderInCategory="63"
+        android:title="@string/rotate_bounce_color"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/rotate_while_accelerating"
+        android:orderInCategory="64"
+        android:title="@string/rotate_while_accelerating"
+        app:showAsAction="never"/>
+</menu>
