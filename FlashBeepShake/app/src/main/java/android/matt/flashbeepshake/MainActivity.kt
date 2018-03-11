@@ -1,21 +1,18 @@
 package android.matt.flashbeepshake
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.hardware.camera2.CameraDevice
+import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
-import android.os.Handler
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import android.hardware.camera2.CameraAccessException
-import android.util.Log
 
 
 class MainActivity : AppCompatActivity() {
