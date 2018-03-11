@@ -1,5 +1,6 @@
 package android.matt.flashbeepshake
 
+import android.Manifest
 import android.content.Context
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
@@ -7,6 +8,7 @@ import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
 import android.os.Vibrator
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.content_main.*
 
 
 class MainActivity : AppCompatActivity() {
+    private val CAMERA_REQUEST = 1
     private var toggleFlash = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +59,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun flash() {
+        ActivityCompat.requestPermissions(this@MainActivity,
+                arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST)
+
         TextField.text = getString(R.string.message_flash)
 
         val camMan = getSystemService(Context.CAMERA_SERVICE) as CameraManager
