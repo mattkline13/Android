@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
     private val CAMERA_REQUEST = 1
-    private var toggleFlash = false
+    private var flashIsOn = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,12 +68,12 @@ class MainActivity : AppCompatActivity() {
         try {
             val cameraList = camMan.cameraIdList
             val cameraID = cameraList[0]
-            if (toggleFlash) {
+            if (flashIsOn) {
                 camMan.setTorchMode(cameraID, false)
-                toggleFlash = true
-            } else if (!toggleFlash) {
+                flashIsOn = false
+            } else if (!flashIsOn) {
                 camMan.setTorchMode(cameraID, true)
-                toggleFlash = false
+                flashIsOn = true
             }
         } catch (e: CameraAccessException) {
             Log.d("Camera Error: ", "No camera found")
