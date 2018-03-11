@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Flash, Beep, Shake</string>
+    <string name="action_flash">Flash</string>
+    <string name="action_beep">Beep</string>
+    <string name="action_shake">Shake</string>
+    <string name="message_beep">Beep activated. This will last for 500 milli sec</string>
+    <string name="message_flash">Flash activated. Press again to toggle</string>
+    <string name="message_shake">Shake activated. This will last for 500 milli sec</string>
+    <string name="message_start">Welcome to Flash Beep and Shake. Press a button below.</string>
+</resources>
