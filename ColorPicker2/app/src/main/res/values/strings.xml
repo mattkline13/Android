@@ -4,4 +4,5 @@
     <string name="action_recall">Recall</string>
     <string name="default_slider">0</string>
     <string name="color_name">Color Name</string>
+    <string name="send_color">Send Color</string>
 </resources>

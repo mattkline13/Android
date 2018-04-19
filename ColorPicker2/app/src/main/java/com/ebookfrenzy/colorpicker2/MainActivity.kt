@@ -1,6 +1,8 @@
 package com.ebookfrenzy.colorpicker2
 
+import android.app.Activity
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -10,26 +12,51 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.io.File
+import java.io.FileNotFoundException
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     val FILENAME = "saved_colors.txt"
     var colorList = arrayListOf<String>()
+    var sendingColor = 0
+
+    private fun handleIntent() {
+        val info = intent.extras
+        if (info != null) {
+            sendColorButton.visibility = View.VISIBLE
+        }
+    }
+
+    fun sendColor(view: View) {
+        try {
+            val resultIntent = Intent()
+            resultIntent.putExtra("Color", sendingColor)
+            intent.putExtra("Color", sendingColor)
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
+        }
+        catch(e: Exception) {
+            System.out.print(e)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        handleIntent()
 
         seekBarRed.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 redValue.setText(seekBarRed.progress.toString())
                 surface.setBackgroundColor(Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress))
+                sendingColor = Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress)
             }
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
@@ -39,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 greenValue.setText(seekBarGreen.progress.toString())
                 surface.setBackgroundColor(Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress))
+                sendingColor = Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress)
             }
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
@@ -48,6 +76,7 @@ class MainActivity : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 blueValue.setText(seekBarBlue.progress.toString())
                 surface.setBackgroundColor(Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress))
+                sendingColor = Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress)
             }
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
@@ -57,6 +86,7 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 seekBarRed.setProgress(redValue.text.toString().toInt())
                 surface.setBackgroundColor(Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress))
+                sendingColor = Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress)
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -66,6 +96,7 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 seekBarGreen.setProgress(greenValue.text.toString().toInt())
                 surface.setBackgroundColor(Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress))
+                sendingColor = Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress)
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -75,6 +106,7 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 seekBarBlue.setProgress(blueValue.text.toString().toInt())
                 surface.setBackgroundColor(Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress))
+                sendingColor = Color.rgb(seekBarRed.progress, seekBarGreen.progress, seekBarBlue.progress)
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -147,7 +179,7 @@ class MainActivity : AppCompatActivity() {
         val output = f.printWriter()
 
         for (color in colorList) {
-            output.println("$color")
+            output.println(color)
         }
 
         output.flush()
@@ -157,13 +189,18 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val f = File(filesDir, FILENAME)
-        val input = Scanner(f)
+        try {
+            val f = File(filesDir, FILENAME)
+            val input = Scanner(f)
 
-        while (input.hasNextLine()) {
-            colorList.add(input.nextLine())
+            while (input.hasNextLine()) {
+                colorList.add(input.nextLine())
+            }
+
+            input.close()
+        } catch (e: FileNotFoundException) {
+            System.out.println("File not found")
         }
-
-        input.close()
     }
+
 }
