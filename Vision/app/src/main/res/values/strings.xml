@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Vision 2</string>
+    <string name="retrieve">1. Get Image</string>
+    <string name="decode">2. Label</string>
+    <string name="unknown">-- Unknown --</string>
+    <string name="decode2">3. Read Text</string>
+</resources>
