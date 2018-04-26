@@ -94,14 +94,17 @@ class  MainActivity : AppCompatActivity() {
         val flashButton = findViewById(button_flash)
         flashButton?.setOnClickListener {
             theMessage = "flash"
+            mTextarea!!.append("Message has been updated to flash")
         }
         val beepButton = findViewById(button_beep)
         beepButton?.setOnClickListener {
             theMessage = "beep"
+            mTextarea!!.append("Message has been updated to beep")
         }
         val shakeButton = findViewById(button_shake)
         shakeButton?.setOnClickListener {
             theMessage = "shake"
+            mTextarea!!.append("Message has been updated to shake")
         }
     }
 
@@ -252,16 +255,14 @@ class  MainActivity : AppCompatActivity() {
     fun echoMsg(msg: String) {
         mTextarea!!.append(msg)
 
-        when (msg) {
-            "flash" -> { flash() }
-            "beep" -> { beep() }
-            "shake" -> { shake() }
-        }
+        shake()
+        flash()
+        beep()
+
     }
 
     private fun flash() {
-        ActivityCompat.requestPermissions(this@MainActivity,
-                arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST)
+        ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST)
 
         val camMan = getSystemService(Context.CAMERA_SERVICE) as CameraManager
         try {
@@ -277,12 +278,11 @@ class  MainActivity : AppCompatActivity() {
         } catch (e: CameraAccessException) {
             Log.d("Camera Error: ", "No camera found")
         }
-
     }
 
     private fun beep() {
         val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
-        tone.startTone(ToneGenerator.TONE_DTMF_3,500)	//play specific tone for 600ms
+        tone.startTone(ToneGenerator.TONE_DTMF_3,500)
     }
 
     private fun shake() {
@@ -319,9 +319,6 @@ class  MainActivity : AppCompatActivity() {
                 // until it succeeds or throws an exception after 12 seconds (or so)
                 Log.i(TCLIENT, "Connecting to server")
                 mmSocket!!.connect()
-                findViewById(button_flash)?.visibility = VISIBLE
-                findViewById(button_beep)?.visibility = VISIBLE
-                findViewById(button_shake)?.visibility = VISIBLE
             } catch (connectException: IOException) {
                 Log.i(TCLIENT,
                     "Connect IOException when trying socket connection\n $connectException")
@@ -414,9 +411,6 @@ class  MainActivity : AppCompatActivity() {
 
         //manage the Server's end of the conversation on the passed-in socket
         fun manageConnectedSocket(socket: BluetoothSocket) {
-
-
-
             Log.i(TSERVER, "\nManaging the Socket\n")
             val inSt: InputStream
             val nBytes: Int
@@ -460,8 +454,7 @@ class  MainActivity : AppCompatActivity() {
         private const val TCLIENT = "--Talker Client--"  //for Log.X
         private const val TSERVER = "--Talker Server--"  //for Log.X
         private const val REQUEST_ENABLE_BT = 3313  //our own code used with Intents
-        private const val MY_UUID_STRING = "12ce62cb-60a1-4edf-9e3a-ca889faccd6c"
-                                                             //from www.uuidgenerator.net
+        private const val MY_UUID_STRING = "12ce62cb-60a1-4edf-9e3a-ca889faccd6c" //from www.uuidgenerator.net
         private const val SERVICE_NAME = "Talker"
         private const val LOG_TAG = "--Talker----"
     }
